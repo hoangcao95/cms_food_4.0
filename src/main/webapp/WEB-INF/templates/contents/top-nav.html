@@ -1,0 +1,144 @@
+<content th:fragment="content" th:remove="tag">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-top  navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
+            <!-- Brand -->
+            <a class="navbar-brand pt-0 d-md-none" th:href="@{/home/index.html}">
+                <img th:src="@{/assets/img/brand/logo-light.png}" class="navbar-brand-img" alt="...">
+            </a>
+            <!-- Form -->
+            <form class="navbar-search navbar-search-dark form-inline mr-3 ml-lg-auto">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div><input class="form-control" placeholder="Search" type="text">
+                    </div>
+                </div>
+            </form>
+
+            <!-- User -->
+            <ul class="navbar-nav align-items-center ">
+                <li class="nav-item d-none d-md-flex">
+                    <div class="dropdown d-none d-md-flex mt-2 ">
+                        <a class="nav-link full-screen-link pl-0 pr-0"><i class="fe fe-maximize-2 floating " id="fullscreen-button"></i></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown d-none d-md-flex">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link pr-0" data-toggle="dropdown" href="#" role="button">
+                        <div class="media align-items-center">
+                            <i class="fe fe-user "></i>
+                        </div></a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow dropdown-menu-right">
+                        <a class="dropdown-item d-flex" href="#">
+                            <span class="avatar brround mr-3 align-self-center"> <img th:src="@{/assets/img/faces/male/4.jpg}" alt="imag" ></span>
+                            <div>
+                                <strong>Madeleine Scott</strong> sent you friend request
+                                <div class=" mt-2 small text-muted">
+                                    <span class="btn btn-sm btn-primary">Conform</span>
+                                    <span class="btn btn-sm btn-outline-primary">Delete</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex" href="#">
+                            <span class="avatar brround mr-3 align-self-center"><img th:src="@{/assets/img/faces/female/14.jpg}" alt="imag" ></span>
+                            <div>
+                                <strong>rebica</strong> sent you friend request
+                                <div class=" mt-2 small text-muted">
+                                    <span class="btn btn-sm btn-primary">Conform</span>
+                                    <span class="btn btn-sm btn-outline-primary">Delete</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex" href="#">
+                            <span class="avatar brround mr-3 align-self-center"><img th:src="@{/assets/img/faces/male/1.jpg}" alt="imag"></span>
+                            <div>
+                                <strong>Devid robott</strong> sent you friend request
+                                <div class=" mt-2 small text-muted">
+                                    <span class="btn btn-sm btn-primary">Conform</span>
+                                    <span class="btn btn-sm btn-outline-primary">Delete</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div><a class="dropdown-item text-center text-muted-dark" href="#">View all Requestes</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown d-none d-md-flex">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link pr-0" data-toggle="dropdown" href="#" role="button">
+                        <div class="media align-items-center">
+                            <i class="fe fe-mail "></i>
+                        </div></a>
+                    <div class="dropdown-menu  dropdown-menu-lg dropdown-menu-arrow dropdown-menu-right">
+                        <a href="#" class="dropdown-item text-center">12 New Messages</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item d-flex">
+                            <span class="avatar brround mr-3 align-self-center"><img th:src="@{/assets/img/faces/male/41.jpg}" alt="img"></span>
+                            <div>
+                                <strong>Madeleine</strong> Hey! there I' am available....
+                                <div class="small text-muted">3 hours ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item d-flex">
+                            <span class="avatar brround mr-3 align-self-center"><img th:src="@{/assets/img/faces/female/1.jpg}" alt="img" ></span>
+                            <div>
+                                <strong>Anthony</strong> New product Launching...
+                                <div class="small text-muted">5  hour ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-center">See all Messages</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown d-none d-md-flex">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link pr-0" data-toggle="dropdown" href="#" role="button">
+                        <div class="media align-items-center">
+                            <i class="fe fe-bell f-30 "></i>
+                        </div></a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow dropdown-menu-right">
+                        <a href="#" class="dropdown-item d-flex">
+                            <div>
+                                <strong>Someone likes our posts.</strong>
+                                <div class="small text-muted">3 hours ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item d-flex">
+                            <div>
+                                <strong> 3 New Comments</strong>
+                                <div class="small text-muted">5  hour ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item d-flex">
+                            <div>
+                                <strong> Server Rebooted.</strong>
+                                <div class="small text-muted">45 mintues ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-center">View all Notification</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link pr-md-0" data-toggle="dropdown" href="#" role="button">
+                        <div class="media align-items-center">
+                            <span class="avatar avatar-sm rounded-circle">
+                                <img alt="Image placeholder" th:src="@{/assets/img/brand/logo.png}">
+                            </span>
+                            <div class="media-body ml-2 d-none d-lg-block">
+                                <span th:text="${#strings.toUpperCase(session.userName)}" class="mb-0 "></span>
+                            </div>
+                        </div></a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <div class=" dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome!</h6>
+                        </div>
+                        <a class="dropdown-item" th:href="@{/account/change_password.html}"><i class="ni ni-single-02"></i> <span>Đổi mật khẩu</span></a>
+                        <div class="dropdown-divider"></div><a class="dropdown-item" th:href="@{/logout.html}"><i class="ni ni-user-run"></i> <span>Đăng xuất</span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Top navbar-->
+</content>

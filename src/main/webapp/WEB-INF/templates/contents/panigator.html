@@ -1,0 +1,37 @@
+<content th:fragment="content" th:remove="tag">
+    <div th:if="${not #lists.isEmpty(page.content)}" class="panigation-wrapper">
+        <div class="pagination pull-right no-margin float-right" id="pagination-right">
+            <ul class="pagination">
+                <li class="paginate_button page-item" style="cursor: pointer" th:if="${not page.first}">
+                    <a class="page-link" onclick="panigator.goToPageUrl(0)"><i class="fa fa-angle-left"></i></a>
+                </li>
+                <!--   HIỂN THỊ SỐ TRANG -->
+                <th:block th:each="pageNumber : ${#numbers.sequence(page.number - 1, page.number + 3)}">
+                    <li class="paginate_button page-item active" style="cursor: pointer"
+                        th:if="${pageNumber eq (page.number+1) and pageNumber gt 0 and  pageNumber lt (page.totalPages +1) }">
+                        <a class="page-link" th:onclick="'panigator.goToPageUrl(' + ${pageNumber - 1} + ')'"
+                           th:title="${pageNumber}"
+                           th:text="${pageNumber}"></a>
+                    </li>
+
+                    <li style="cursor: pointer"  th:if="${pageNumber ne (page.number+1) and pageNumber gt 0 and  pageNumber lt (page.totalPages +1) }" class="paginate_button page-item">
+                        <a class="page-link" th:onclick="'panigator.goToPageUrl(' + ${pageNumber - 1} + ')'"
+                           th:title="${pageNumber}"
+                           th:text="${pageNumber}"></a>
+                    </li>
+                </th:block> <!--   KẾT THÚC SỐ TRANG -->
+                <li class="paginate_button page-item" style="cursor: pointer"  th:if="${not page.last}">
+                    <a class="page-link" th:onclick="'panigator.goToPageUrl(' + ${page.totalPages - 1} + ')'"><i class="fa fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </div>  <!--END PAGTAGLIB-->
+
+        <div>
+            <div class="pagination pull-left no-margin" id="pagination-left" style="display: none">
+                <span> Hiển thị <span th:text="${(page.number * page.size)+1}"></span> đến <span
+                        th:text="${(page.number * page.size)+ page.numberOfElements}"></span>  trên tổng
+                <span th:text="${page.totalElements}"></span> bản ghi</span>
+            </div>
+        </div>  <!--END PAGINATION-->
+    </div>
+</content>

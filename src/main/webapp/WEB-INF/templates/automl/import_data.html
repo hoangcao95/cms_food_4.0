@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <content th:replace="contents/init :: head"></content>
+    <title>Trang chủ</title>
+    <!-- Favicon -->
+    <link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="assets/css/icons.css" rel="stylesheet">
+
+    <!-- form Uploads -->
+    <link href="assets/plugins/fileuploads/css/dropify.css" rel="stylesheet" type="text/css"/>
+
+    <!--Bootstrap.min css-->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- Ansta CSS -->
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom scroll bar css-->
+    <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet"/>
+
+    <!-- Sidemenu Css -->
+    <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
+</head>
+<body class="app sidebar-mini rtl">
+<div id="global-loader"></div>
+<div class="page">
+    <div class="page-main">
+        <content th:replace="contents/menu-bar :: content"></content>
+
+        <!-- Main content-->
+        <div class="app-content ">
+            <div class="side-app">
+                <div class="main-content">
+                    <content th:replace="contents/top-nav :: content"></content>
+                    <div class="container-fluid pt-8">
+                        <!-- Short menu -->
+                        <div class="page-header mt-0 shadow p-3">
+                            <ol class="breadcrumb mb-sm-0">
+                                <li class="breadcrumb-item">
+                                    <a th:href="@{/home/index.html}"><i class="side-menu__icon fe fe-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a th:href="@{/account/index.html}" data-toggle="tooltip" title="Quản lý tài khoản">Quản
+                                        lý tài khoản</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Import dữ liệu</li>
+                            </ol>
+                        </div>
+
+                        <!-- Message display -->
+                        <div id="messageResult"
+                             th:class="${messageResult != null and #strings.startsWith(messageResult,'ERROR:')} ? 'alert alert-error' : 'alert alert-success'"
+                             th:if="${messageResult}"
+                             th:text="${messageResult != null and messageResult != ''} ? ${#strings.replace(messageResult,'ERROR:','')} : ''">
+                        </div>
+                        <!-- Message display -->
+
+                        <div class="row">
+                            <div class="col-md-12 pad10_lr">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h2 class="mb-0">Chọn ảnh nhận diện</h2>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form th:action="@{/automl/import_data.html(${_csrf.parameterName}=${_csrf.token})}"
+                                              method="POST" class="frmMain" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <input type="hidden" id="contextPath" th:value="@{/}">
+                                                <div id="errorMessage" class="alert alert-danger"
+                                                     style="text-align:left; color: red; font-weight: bold; font-size: 13px;"
+                                                     th:each="err: ${#fields.errors('*')}" th:text="${err}"></div>
+                                                <div class="col-lg-12">
+                                                    <div class="card shadow">
+                                                        <div class="card-header">
+                                                            <h2>Chọn ảnh</h2>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <input type="file" name="image" class="dropify" data-default-file="${imageDefault}" data-height="300"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="card shadow">
+                                                        <div class="card-header">
+                                                            <h2>Gán nhãn</h2>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <select id="label" name="label" class="form-control select2 w-100">
+                                                                <option th:each="item : ${lstLabel}" th:value="${item.labelId}" th:utext="${item.labelName}" />
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 btn-submit-form align-center">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success btn-width100">
+                                                            IMPORT
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <content th:replace="contents/footer :: content"></content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Back to top -->
+<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<content th:replace="contents/init :: script"></content>
+<script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+<script src="assets/js/popper.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Optional JS -->
+<script src="assets/plugins/chart.js/dist/Chart.min.js"></script>
+<script src="assets/plugins/chart.js/dist/Chart.extension.js"></script>
+
+<!-- Data tables -->
+<script src="assets/plugins/datatable/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+
+<!-- Fullside-menu Js-->
+<script src="assets/plugins/toggle-sidebar/js/sidemenu.js"></script>
+
+<!-- file uploads js -->
+<script src="assets/plugins/fileuploads/js/dropify.min.js"></script>
+
+<!-- Custom scroll bar Js-->
+<script src="assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<!-- Ansta JS -->
+<script src="assets/js/custom.js"></script>
+
+<script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove': 'Remove',
+            'error': 'Ooops, something wrong appended.'
+        },
+        error: {
+            'fileSize': 'The file size is too big (2M max).'
+        }
+    });
+</script>
+</body>
+</html>

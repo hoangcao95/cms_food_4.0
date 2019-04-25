@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--<contextName>CMS</contextName>-->
+    <!-- <property name="logging.directory" value="${catalina.base}/logs-yotel/yotel-admin"/> -->
+    <property name="logging.directory" value="/home/logs/tomcat8-api/"/>
+    <property name="prefix" value="topup"/>
+    <property name="MESSAGE_FORMAT"
+              value="%d{yyyy/MM/dd}:%d{HH:mm:ss.SSS} %2(%.-5level): %logger{0}.%M[%line] %4.4mdc{message-code} %message %throwable%n"/>
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+    <logger name="com.transparent" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.web" level="WARN"/>
+    <logger name="org.springframework.amqp" level="WARN"/>
+    <logger name="org.springframework.data.mongodb" level="WARN"/>
+    <logger name="org.springframework.security" level="WARN"/>
+    <logger name="org.springframework.security.oauth2" level="WARN"/>
+    <logger name="org.springframework.data" level="WARN"/>
+    <logger name="org.springframework.web.client" level="WARN"/>
+
+    <if condition='property("os.name").contains("Windows")'>
+        <then>
+            <include resource="logback-dev.xml"/>
+        </then>
+    </if>
+    <if condition='property("os.name").contains("Mac")'>
+        <then>
+            <include resource="logback-dev.xml"/>
+        </then>
+    </if>
+
+    <if condition='property("os.name").contains("Linux")'>
+        <then>
+            <include resource="logback-prod.xml"/>
+        </then>
+    </if>
+</configuration>
+
+

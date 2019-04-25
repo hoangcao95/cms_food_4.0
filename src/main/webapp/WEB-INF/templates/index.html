@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<content th:replace="contents/init :: head"></content>
+		<title>Trang chủ</title>
+	</head>
+	<body class="app sidebar-mini rtl" >
+		<div id="global-loader" ></div>
+		<div class="page">
+			<div class="page-main">
+				<!--<content th:replace="fragments/menu-bar :: content"></content>-->
+				<!--<content th:replace="fragments/top-nav :: content"></content>-->
+				<div class="right_col" role="main" style="min-height: 100vh">
+					Hello
+				</div>
+				<!--<content th:replace="fragments/footer :: content"></content>-->
+			</div>
+		</div>
+		<!-- Back to top -->
+		<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+		<content th:replace="contents/init :: script"></content>
+	</body>
+</html>

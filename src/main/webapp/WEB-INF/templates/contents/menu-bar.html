@@ -1,0 +1,76 @@
+<content th:fragment="content" th:remove="tag">
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar ">
+        <div class="sidebar-img">
+            <a class="navbar-brand" th:href="@{/home/index.html}">
+                <img alt="..." class="navbar-brand-img main-logo" th:src="@{/assets/img/brand/logo-dark.png}">
+                <img alt="..." class="navbar-brand-img logo" th:src="@{/assets/img/brand/logo.png}">
+            </a>
+            <ul class="side-menu">
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#">
+                        <i class="side-menu__icon fe fe-home"></i>
+                        <span class="side-menu__label">TRANG CHỦ</span>
+                    </a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#">
+                        <i class="side-menu__icon fe fe-grid"></i>
+                        <span class="side-menu__label">HỆ THỐNG</span>
+                        <i class="angle fa fa-angle-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a th:href="@{/thread/list.html}" class="slide-item">Quản lý tiến trình</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-user"></i><span class="side-menu__label">TÀI KHOẢN</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a th:href="@{/account/index.html}" class="slide-item">QUẢN LÝ TÀI KHOẢN</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/account/change_password.html}" class="slide-item">ĐỔI MẬT KHẨU</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/logout.html}" class="slide-item">ĐĂNG XUẤT</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-user"></i><span class="side-menu__label">HÌNH ẢNH</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a th:href="@{/automl/predict.html}" class="slide-item">Nhận diện ảnh</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-user"></i><span class="side-menu__label">BỘ DỮ LIỆU</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a th:href="@{/automl/dataset_list.html}" class="slide-item">Quản lý bộ dữ liệu</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/automl/import_data.html}" class="slide-item">Import dữ liệu</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/automl/label_list.html}" class="slide-item">Quản lý nhãn</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-user"></i><span class="side-menu__label">MODEL</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a th:href="@{/automl/model_list.html}" class="slide-item">Quản lí Model</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- Sidebar menu-->
+</content>

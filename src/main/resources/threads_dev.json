@@ -1,0 +1,35 @@
+{
+  "threads": [
+    {
+      "className": "vn.vano.cms.thread.CreateTableProcess",
+      "autoStart": false,
+      "delayTime": 1,
+      "id": "CreateTableProcess-001",
+      "name": "[WARN] Tien trinh tao bang luon luon chay",
+      "order": 1,
+      "params": {
+      }
+    },
+    {
+      "className": "vn.vano.cms.thread.MoRequestProcess",
+      "autoStart": true,
+      "delayTime": 3,
+      "id": "MoRequestProcess-001",
+      "name": "[WARN] Tien trinh xu ly MO dang ky",
+      "order": 2,
+      "params": {
+      }
+    },
+    {
+      "className": "vn.vano.cms.thread.MtRequestProcess",
+      "autoStart": true,
+      "delayTime": 3,
+      "id": "MoRequestProcess-001",
+      "name": "[WARN] Tien trinh xu ly MO dang ky",
+      "order": 3,
+      "params": {
+        "profile":"DEV"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<content th:fragment="delete" th:remove="tag">
+    <!-- Modal -->
+    <div class="modal fade" id="modal-dlg" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalLabel">THÔNG BÁO</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Bạn có chắc chắn muốn xóa bản ghi này không?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" name="btnYes" class="btn btn-primary">YES</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</content>

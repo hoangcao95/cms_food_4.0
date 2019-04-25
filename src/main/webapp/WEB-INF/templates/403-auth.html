@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <content th:replace="contents/init :: head"></content>
+    <title>403</title>
+</head>
+<body class="app sidebar-mini rtl" >
+<div id="global-loader" ></div>
+<div class="page">
+    <div class="page-main">
+        <!-- page content -->
+        <div class="col-md-12">
+            <div class="col-middle">
+                <div class="text-center text-center">
+                    <h1 class="error-number">Page 403</h1>
+                    <h2>Access denied</h2>
+                    Không thể truy nhập chức năng này.<a href="javascript:history.back();" class="alert-link"> Trở về chức năng trước</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+<!-- Back to top -->
+<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<content th:replace="contents/init :: script"></content>
+</body>
+</html>

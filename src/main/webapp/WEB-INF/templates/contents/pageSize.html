@@ -1,0 +1,11 @@
+<content th:fragment="content" th:remove="tag">
+    <div class="btn-group">
+        <button id="btnTableLengthId" type="button" class="btn btn-table100 page-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${page.size}"></button>
+        <div class="dropdown-menu">
+            <span th:onclick="'viewPageSize(10)'" th:style="${page.size == 10} ? 'background: darkgray;' : 'background: white;'" class="dropdown-item">10</span>
+            <span th:onclick="'viewPageSize(20)'" th:style="${page.size == 20} ? 'background: darkgray;' : 'background: white;'" class="dropdown-item">20</span>
+            <span th:onclick="'viewPageSize(50)'" th:style="${page.size == 50} ? 'background: darkgray;' : 'background: white;'" class="dropdown-item">50</span>
+            <span th:onclick="'viewPageSize(100)'" th:style="${page.size == 100} ? 'background: darkgray;' : 'background: white;'" class="dropdown-item">100</span>
+        </div>
+    </div>
+</content>

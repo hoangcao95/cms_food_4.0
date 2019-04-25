@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <content th:replace="contents/init :: head"></content>
+    <title>Trang chủ</title>
+</head>
+<body class="app sidebar-mini rtl" >
+<div id="global-loader" ></div>
+<div class="page">
+    <div class="page-main">
+        <content th:replace="contents/menu-bar :: content"></content>
+
+        <!-- Main content-->
+        <div class="app-content ">
+            <div class="side-app">
+                <div class="main-content">
+                    <content th:replace="contents/top-nav :: content"></content>
+                    <div class="container-fluid pt-8">
+                        <!-- Short menu -->
+                        <div class="page-header mt-0 shadow p-3">
+                            <ol class="breadcrumb mb-sm-0">
+                                <li class="breadcrumb-item"><a th:href="@{/home/index.html}"><i class="side-menu__icon fe fe-home"></i></a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Quản lý Model</li>
+                            </ol>
+                        </div>
+
+                        <!-- Message display -->
+                        <div id="messageResult" th:class="${messageResult != null and #strings.startsWith(messageResult,'ERROR:')} ? 'alert alert-error' : 'alert alert-success'"
+                             th:if="${messageResult}" th:text="${messageResult != null and messageResult != ''} ? ${#strings.replace(messageResult,'ERROR:','')} : ''">
+                        </div>
+
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-12 pad10_lr">-->
+                                <!--<div class="card shadow">-->
+                                    <!--<div class="card-header">-->
+                                        <!--<h2 class="mb-0">TÌM KIẾM</h2>-->
+                                    <!--</div>-->
+                                    <!--<div class="card-body">-->
+                                        <!--<form th:object="${account}" th:action="@{/account/search.html}" method="POST" class="frmMain">-->
+                                            <!--<div class="row">-->
+                                                <!--<input type="hidden" id="contextPath" th:value="@{/}">-->
+                                                <!--<div id="errorMessage" class="alert alert-danger" style="text-align:left; color: red; font-weight: bold; font-size: 13px;" th:each="err: ${#fields.errors('*')}" th:text="${err}"></div>-->
+                                                <!--<div class="col-md-6">-->
+                                                    <!--<div class="form-group">-->
+                                                        <!--<label class="form-label">Tên đăng nhập</label>-->
+                                                        <!--<input class="form-control" type="text" name="userName" maxlength="20" placeholder=""/>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="col-md-6">-->
+                                                    <!--<div class="form-group">-->
+                                                        <!--<label class="form-label">Email</label>-->
+                                                        <!--<input class="form-control" type="text" name="email" maxlength="50" placeholder=""/>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="col-md-12 btn-submit-form align-center">-->
+                                                    <!--<div class="form-group">-->
+                                                        <!--<button type="submit" class="btn btn-primary btn-width100">SEARCH</button>-->
+                                                        <!--<a th:href="@{/account/index.html}" class="btn btn-warning btn-width100">CLEAR</a>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="row">
+                            <div class="col-md-12 pad10_lr">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h2 class="mb-0">DANH SÁCH MODEL</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="pad5rem-bottom">
+                                            <div class="col-md-2 no-pad float-left">
+                                                <content th:replace="contents/pageSize :: content"></content>
+                                            </div>
+                                            <div class="col-md-10 no-pad float-right">
+                                                <button type="button" class="btn btn-info dropdown-toggle float-right magin-left5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTION</button>
+                                                <div class="dropdown-menu">
+                                                    <a th:href="@{/automl/model_add.html}">
+                                                        <span class="dropdown-item">ADD</span>
+                                                    </a>
+                                                </div>
+                                                <content th:replace="contents/panigator :: content(page = ${page})"></content>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table id="tblData" class="table table-striped table-bordered w-100 text-nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center col-5">STT</th>
+                                                    <th class="text-center">Tên Model</th>
+                                                    <th class="text-center">Mã Model</th>
+                                                    <th class="text-center">Tên bộ dữ liệu</th>
+                                                    <th class="text-center">Số lượng ảnh</th>
+                                                    <th class="text-center">Thời gian đào tạo</th>
+                                                    <th class="text-center">Thời gian hoàn thành</th>
+                                                    <th class="text-center">Trạng thái</th>
+                                                    <th class="text-center col-10">Xóa</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody th:if="${page.content}">
+                                                <tr th:each="eachRow, iterStat : ${page.content}">
+                                                    <td class="text-center" th:text="${iterStat.count + (page.number * page.size)}" data-title="STT"></td>
+                                                    <td th:text="${eachRow.modelName}" data-title="Tên Model"></td>
+                                                    <td th:text="${eachRow.modelId}" data-title="Mã Model"></td>
+                                                    <td th:text="${eachRow.datasetName}" data-title="Tên bộ dữ liệu"></td>
+                                                    <td th:text="${eachRow.qttyImage}" data-title="Số lượng ảnh"></td>
+                                                    <td th:text="${eachRow.trainningDate}" data-title="Thời gian đào tạo"></td>
+                                                    <td th:text="${eachRow.completedDate}" data-title="Thời gian hoàn thành"></td>
+                                                    <td data-title="Trạng thái">
+                                                        <span class="btn btn-success btn-width100 pad3rem" th:if="${eachRow.status}== 1">Completed</span>
+                                                        <span class="btn btn-danger btn-width100 pad3rem" th:if="${eachRow.status}== 0">Trainning</span>
+                                                    </td>
+                                                    <td class="text-center" data-title="Xóa">
+                                                        <a href="#modal-dlg"  onclick="return false;" data-toggle="modal" th:data-id="${eachRow.modelId}" title="Xóa">
+                                                            <button class="btn btn-info btn-circle">
+                                                                <i class="fe fe-trash"></i>
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="table_empty" th:if="${#lists.isEmpty(page.content)}">
+                                                    <td colspan="6">KHÔNG CÓ BẢN GHI!</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="pad5rem-top">
+                                            <content th:replace="contents/panigator :: content(page = ${page})"></content>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <content th:replace="contents/footer :: content"></content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<content th:replace="contents/modalDialog :: delete"></content>
+<!-- Modal -->
+<!--<div class="modal fade" id="modal-dlg" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h2 class="modal-title" id="modalLabel">THÔNG BÁO</h2>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+                <!--<p class="mb-0">Bạn có chắc chắn muốn xóa bản ghi này không?</p>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" name="btnYes" class="btn btn-primary">YES</button>-->
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!-- Back to top -->
+<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<content th:replace="contents/init :: script"></content>
+<script>
+    var CONTEXT_PATH = $('#contextPath').val();
+
+    $('#modal-dlg').on('show.bs.modal', function(e) {
+        var id = $(e.relatedTarget).data('id');
+        $(e.currentTarget).find('button[name="btnYes"]').click(function(){
+            window.location = "/automl/modelDelete.html/" + id;
+        });
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $("#messageResult").hide().fadeIn(0).delay(3000).fadeOut(1000);
+</script>
+</body>
+</html>

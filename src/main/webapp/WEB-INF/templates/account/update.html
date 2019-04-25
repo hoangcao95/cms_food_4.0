@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <content th:replace="contents/init :: head"></content>
+    <title>Trang chủ</title>
+</head>
+<body class="app sidebar-mini rtl" >
+<div id="global-loader" ></div>
+<div class="page">
+    <div class="page-main">
+        <content th:replace="contents/menu-bar :: content"></content>
+
+        <!-- Main content-->
+        <div class="app-content ">
+            <div class="side-app">
+                <div class="main-content">
+                    <content th:replace="contents/top-nav :: content"></content>
+                    <div class="container-fluid pt-8">
+                        <!-- Short menu -->
+                        <div class="page-header mt-0 shadow p-3">
+                            <ol class="breadcrumb mb-sm-0">
+                                <li class="breadcrumb-item">
+									<a th:href="@{/home/index.html}"><i class="side-menu__icon fe fe-home"></i></a>
+								</li>
+								<li class="breadcrumb-item">
+									<a th:href="@{/account/index.html}" data-toggle="tooltip" title="Quản lý tài khoản">Quản lý tài khoản</a>
+								</li>
+                                <li class="breadcrumb-item active" aria-current="page">Cập nhật tài khoản</li>
+                            </ol>
+                        </div>
+
+						<!-- Message display -->
+						<div id="messageResult" th:class="${messageResult != null and #strings.startsWith(messageResult,'ERROR:')} ? 'alert alert-error' : 'alert alert-success'"
+							th:if="${messageResult}" th:text="${messageResult != null and messageResult != ''} ? ${#strings.replace(messageResult,'ERROR:','')} : ''">
+						</div>
+						<!-- Message display -->
+						
+                        <div class="row">
+                            <div class="col-md-12 pad10_lr">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h2 class="mb-0">THÊM MỚI TÀI KHOẢN</h2>
+                                    </div>
+																		
+                                    <div class="card-body">
+                                        <form th:object="${account}" th:action="@{/account/update.html}" method="POST" class="frmMain">
+                                            <div class="row">
+                                                <input type="hidden" id="contextPath" th:value="@{/}">
+                                                <div id="errorMessage" class="alert alert-danger" style="text-align:left; color: red; font-weight: bold; font-size: 13px;" th:each="err: ${#fields.errors('*')}" th:text="${err}"></div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Tên đăng nhập</label>
+                                                        <input class="form-control" type="text" name="userName" th:field="*{userName}" maxlength="20" placeholder="Tên đăng nhập"/>
+                                                    </div>
+													<div class="form-group">
+                                                        <label class="form-label">Email</label>
+                                                        <input class="form-control" type="text" name="email" th:field="*{email}" maxlength="50" placeholder="Email"/>
+                                                    </div>
+													<div class="form-group">
+                                                        <label class="form-label">Trạng thái</label>
+                                                        <div>
+                                                            <select name="status" th:field="*{status}" class="form-control custom-select full-width">
+                                                                <option value="1" >ACTIVE</option>
+                                                                <option value="0" >DEACTIVE</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Họ tên</label>
+                                                        <input class="form-control" type="text" name="fullName" th:field="*{fullName}" maxlength="50" placeholder="Họ tên"/>
+                                                    </div>
+													<div class="form-group">
+                                                        <label class="form-label">Phân quyền</label>
+                                                        <div class="checkbox checkbox-info">
+															<label class="custom-control custom-checkbox inline-dp" th:each="role : ${lstAllRole}" th:title="${role.description}">
+																<input th:field="*{roles}" th:value="${role.id}" checked type="checkbox" class="custom-control-input">
+																<span class="custom-control-label text-dark ml-2" th:text="${role.description}"></span>
+															</label>
+														</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 btn-submit-form align-center">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success btn-width100">UPDATE</button>
+														<a th:href="@{/account/index.html}" class="btn btn-primary btn-width100">BACK</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <content th:replace="contents/footer :: content"></content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Back to top -->
+<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<content th:replace="contents/init :: script"></content>
+<script>
+    var CONTEXT_PATH = $('#contextPath').val();
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    // $(document).ready(function () {
+    //     $('.frmMain').bootstrapValidator({
+    //         feedbackIcons: {
+    //             valid: '',
+    //             invalid: 'glyphicon glyphicon-remove',
+    //             validating: 'glyphicon glyphicon-refresh'
+    //         },
+    //         fields: {
+    //             userName: {
+    //                 validators: {
+    //                     notEmpty: {
+    //                         message: 'Tên đăng nhập chưa nhập'
+    //                     }
+    //                 }
+    //             },
+    //             fullName: {
+    //                 validators: {
+    //                     notEmpty: {
+    //                         message: 'Họ tên chưa nhập'
+    //                     }
+    //                 }
+    //             },
+    //             email: {
+    //                 validators: {
+    //                     notEmpty: {
+    //                         message: 'Email chưa nhập'
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     })
+    // });
+
+    $("#messageResult").hide().fadeIn(0).delay(2000).fadeOut(1000);
+</script>
+</body>
+</html>

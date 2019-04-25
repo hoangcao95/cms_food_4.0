@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!--  local server log -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${MESSAGE_FORMAT}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+
+    <!--  loggers define -->
+    <!-- Log all SQL DML statements as they are executed: level = ON,OFF -->
+    <logger name="org.hibernate.SQL" level="ON"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <!--   BasicBinder level = TRACE,OFF-->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="OFF"/>
+    <logger name="org.springframework.security" level="INFO"/>
+    <logger name="org.springframework.security.oauth2" level="INFO"/>
+
+    <!--<logger name="vn.vano.cms.thread.MoQueueSchedule" level="OFF"/>-->
+
+
+    <logger name="vn.yotel" level="DEBUG"/>
+    <logger name="vn.vano" level="DEBUG"/>
+    <logger name="com.viettel" level="DEBUG"/>
+
+
+    <appender name="ASYNC_DEFAULTS" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+        <!-- <appender-ref ref="ASYNC_DEFAULTS" /> -->
+    </root>
+</included>
+
